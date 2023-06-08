@@ -1,5 +1,6 @@
 import React from "react";
 import bg from "../assets/Lofico - Craft your focus environment.mp4";
+import bg2 from "../assets/Lofico - Craft your focus.mp4"
 
 const Background = () => {
   return (
@@ -10,7 +11,7 @@ const Background = () => {
         loop
         className='w-screen h-screen object-cover'
       >
-        <source src={bg} />
+        <source src={bg2} />
       </video>
     </div>
   );

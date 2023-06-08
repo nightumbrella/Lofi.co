@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Wrapper from "./Wrapper";
 // import { HiOutlineForward, HiOutlineBackward } from "react-icons/hi";
 import logo from "../assets/logo.0cbf9e63b4a021661126.gif";
+import { TbWindowMinimize, TbWindowMaximize } from "react-icons/tb";
 
 const Header = () => {
+  const [mute, setMute] = useState(true);
   const hours = new Date().getHours();
   const minute = new Date().getMinutes();
   const utc = new Date().getTimezoneOffset();
@@ -18,25 +20,24 @@ const Header = () => {
             className='w-[150px] select-none'
           />
         </h1>
-        <div className='flex gap-10 text-white items-center justify-between'>
-          <h1>
+        <div className='flex gap-10 text-white items-center justify-between '>
+          <h1 className='backdrop-blur-sm px-3 h-[30px] flex items-center justify-center  bg-black/[.5] rounded-[5px]'>
             {hours}:{minute}
           </h1>
           <div>night</div>
-          <div className='flex items-center '>
-            🏜️
+          <div className='flex items-center backdrop-blur-sm px-3 py-1 bg-black/[.5] rounded-[5px] '>
             <h1>
               Access 50+ scenes <br /> with premium
             </h1>
           </div>
-          <div className='flex items-center backdrop-blur-sm px-3 py-1 bg-black/[.5] rounded-[5px] gap-2 '>
+          <div className='flex items-center backdrop-blur-sm px-3 h-[30px]  bg-black/[.5] rounded-[5px] gap-3 '>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='white'
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-5 h-5'
+              className='w-5 h-5 cursor-pointer'
             >
               <path
                 strokeLinecap='round'
@@ -50,7 +51,7 @@ const Header = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-5 h-5'
+              className='w-5 h-5 cursor-pointer'
             >
               <path
                 strokeLinecap='round'
@@ -66,7 +67,7 @@ const Header = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-5 h-5'
+              className='w-5 h-5 cursor-pointer'
             >
               <path
                 strokeLinecap='round'
@@ -80,7 +81,7 @@ const Header = () => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-5 h-5'
+              className='w-5 h-5 cursor-pointer'
             >
               <path
                 strokeLinecap='round'
@@ -89,6 +90,85 @@ const Header = () => {
                 d='M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z'
               />
             </svg>
+          </div>
+          <div className='flex items-center gap-5 '>
+            {/* mute */}
+            <div className="backdrop-blur-sm w-[30px] justify-center h-[30px] flex items-center  bg-black/[.5] rounded-[5px] cursor-pointer" onClick={() => setMute(!mute)}>
+              {mute ? (
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-5 h-5'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z'
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='w-6 h-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z'
+                  />
+                </svg>
+              )}
+            </div>
+            {/* mute */}
+
+            {/*minimize maximize */}
+
+            <div className="backdrop-blur-sm flex items-center px-1 h-[30px]  bg-black/[.5] rounded-[5px]  cursor-pointer">
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='w-5 h-5'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25'
+                />
+              </svg>
+              <div className="hidden">
+                <TbWindowMaximize />
+                <TbWindowMinimize />
+              </div>
+            </div>
+            {/*minimize maximize */}
+            {/* menu icons */}
+            <div className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer">
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='w-5 h-5'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+                />
+              </svg>
+            </div>
+            {/* menu icons */}
           </div>
         </div>
       </div>
