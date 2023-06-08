@@ -30,6 +30,7 @@ const Header = () => {
               Access 50+ scenes <br /> with premium
             </h1>
           </div>
+          {/* play   */}
           <div className='flex items-center backdrop-blur-sm px-3 h-[30px]  bg-black/[.5] rounded-[5px] gap-3 '>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -91,6 +92,8 @@ const Header = () => {
               />
             </svg>
           </div>
+          {/* play   */}
+
           <div className='flex items-center gap-5 '>
             {/* mute */}
             <div className="backdrop-blur-sm w-[30px] justify-center h-[30px] flex items-center  bg-black/[.5] rounded-[5px] cursor-pointer" onClick={() => setMute(!mute)}>
