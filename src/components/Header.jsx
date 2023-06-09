@@ -3,12 +3,15 @@ import Wrapper from "./Wrapper";
 // import { HiOutlineForward, HiOutlineBackward } from "react-icons/hi";
 import logo from "../assets/logo.0cbf9e63b4a021661126.gif";
 import { TbWindowMinimize, TbWindowMaximize } from "react-icons/tb";
+import { useDispatch } from "react-redux";
+import { UseBackground, changeBackground, onDark, onLight } from "../redux/Slice/BgSlice";
 
 const Header = () => {
   const [mute, setMute] = useState(true);
   const hours = new Date().getHours();
   const minute = new Date().getMinutes();
-  const utc = new Date().getTimezoneOffset();
+  const dispatch = useDispatch();
+  const { set } = UseBackground();
 
   return (
     <Wrapper>
@@ -22,9 +25,27 @@ const Header = () => {
         </h1>
         <div className='flex gap-10 text-white items-center justify-between '>
           <h1 className='backdrop-blur-sm px-3 h-[30px] flex items-center justify-center  bg-black/[.5] rounded-[5px]'>
-            {hours}:{minute}
+            {hours}:{minute <= 10 ? `0${minute}` : minute}{" "}
+            {hours > 12 ? "PM" : "AM"}
           </h1>
-          <div>night</div>
+          {/* night or light */}
+          {set.night ? (
+            <div
+              className='cursor-pointer'
+              onClick={() => dispatch(onLight())}
+            >
+              dark
+            </div>
+          ) : (
+            <div
+              className='cursor-pointer'
+              onClick={() => dispatch(onDark())}
+            >
+              light
+            </div>
+          )}
+
+          {/* night or light */}
           <div className='flex items-center backdrop-blur-sm px-3 py-1 bg-black/[.5] rounded-[5px] '>
             <h1>
               Access 50+ scenes <br /> with premium
@@ -96,7 +117,10 @@ const Header = () => {
 
           <div className='flex items-center gap-5 '>
             {/* mute */}
-            <div className="backdrop-blur-sm w-[30px] justify-center h-[30px] flex items-center  bg-black/[.5] rounded-[5px] cursor-pointer" onClick={() => setMute(!mute)}>
+            <div
+              className='backdrop-blur-sm w-[30px] justify-center h-[30px] flex items-center  bg-black/[.5] rounded-[5px] cursor-pointer'
+              onClick={() => setMute(!mute)}
+            >
               {mute ? (
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -133,7 +157,7 @@ const Header = () => {
 
             {/*minimize maximize */}
 
-            <div className="backdrop-blur-sm flex items-center px-1 h-[30px]  bg-black/[.5] rounded-[5px]  cursor-pointer">
+            <div className='backdrop-blur-sm flex items-center px-1 h-[30px]  bg-black/[.5] rounded-[5px]  cursor-pointer'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -148,14 +172,14 @@ const Header = () => {
                   d='M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25'
                 />
               </svg>
-              <div className="hidden">
+              <div className='hidden'>
                 <TbWindowMaximize />
                 <TbWindowMinimize />
               </div>
             </div>
             {/*minimize maximize */}
             {/* menu icons */}
-            <div className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer">
+            <div className='backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

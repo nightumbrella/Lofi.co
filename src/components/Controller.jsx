@@ -10,12 +10,10 @@ const Controller = ({ playAudio, checkActiveAudio ,activeMusic, playMusic}) => {
         >
           <h1 className='translate-y-16 -translate-x-16  items-center  flex-col 0 w-[200px]  group-hover:opacity-100 opacity-0 duration-300  bg-black/[.3] backdrop-blur-sm flex justify-center py-4 text-white rounded-sm '>
             People talk
-            <h1 className=''>
               <input
                 type='range'
                 className={`w-[85%] mx-auto accent-[#ff8b2c]  ${checkActiveAudio ? "block" : " hidden"} `}
               />
-            </h1>
           </h1>
         </div>
         {/* second */}
@@ -25,12 +23,10 @@ const Controller = ({ playAudio, checkActiveAudio ,activeMusic, playMusic}) => {
         >
           <h1 className='translate-y-16 -translate-x-16  items-center  flex-col 0 w-[200px]  group-hover:opacity-100 opacity-0 duration-300  bg-black/[.3] backdrop-blur-sm flex justify-center py-4 text-white rounded-sm '>
             rain
-            <h1 className=''>
               <input
                 type='range'
                 className={`w-[85%] mx-auto accent-[#ff8b2c]  ${activeMusic ? "block" : " hidden"} `}
               />
-            </h1>
           </h1>
         </div>
         {/* second */}
