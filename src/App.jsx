@@ -3,6 +3,7 @@ import Background from "./components/background";
 import Header from "./components/Header";
 import Controller from "./components/Controller";
 import Audio from "./components/Audio";
+import LeftSidebar from "./components/LeftSidebar";
 
 const App = () => {
   const audioRef = useRef(null);
@@ -33,11 +34,12 @@ const App = () => {
 
 
   return (
-    <div className='relative'>
+    <div className='relative h-screen'>
       <Background />
       <Header />
       <Audio audioRef={audioRef}  musicRef={musicRef}/>
       <Controller playAudio={playAudio} checkActiveAudio={activeAudio} playMusic={playMusic} activeMusic={activeMusic}/>
+      <LeftSidebar/>
     </div>
   );
 };
