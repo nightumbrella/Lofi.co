@@ -14,7 +14,7 @@ const Background = () => {
         autoPlay
         muted
         loop
-        src={bg3}
+        src={currBg}
         className='w-screen h-screen object-cover transition-opacity duration-200'
       >
       </video>
