@@ -19,6 +19,7 @@ const initialState = {
     night: true,
   },
   currBg: bg2,
+  
 };
 
 const BackgroundProvider = createSlice({
@@ -42,6 +43,8 @@ const BackgroundProvider = createSlice({
     },
   },
 });
+
+
 
 export default BackgroundProvider.reducer;
 export const { changeBackground, onLight, onDark } = BackgroundProvider.actions;
