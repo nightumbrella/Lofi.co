@@ -9,5 +9,15 @@
 }
 body {
   font-family: "poppins";
+  overflow: hidden;
   background-color: black;
+}
+
+
+.bg-set{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.bg-set::-webkit-scrollbar {
+  display: none;
 }
