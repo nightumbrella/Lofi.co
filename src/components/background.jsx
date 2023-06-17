@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import bg from "../assets/Lofico - Craft your focus environment.mp4";
+import React, { useEffect, useRef, useState } from "react";
 import bg2 from "../assets/Lofico - Craft your focus.mp4";
 import bg3 from "../assets/night.mp4";
 import pexel from "../assets/pexels-pachon-in-motion-15200537-1920x1080-30fps.mp4";
@@ -7,28 +6,45 @@ import { UseBackground } from "../redux/Slice/BgSlice";
 
 const Background = () => {
   const [background, setBackground] = useState("");
-  const { night, allBg, currBg, set } = UseBackground();
-  console.log(set.night);
+  const [isLoadingTransition, setIsLoadingTransition] = useState(false);
+  const { allBg, currBg, set } = UseBackground();
+  const videoRef = useRef();
+  const { night, light } = allBg;
+  console.log(night, light);
+  const [bg, setBg] = useState(light);
+
+  useEffect(() => {
+    setIsLoadingTransition(true);
+    console.log("true 0000");
+    console.log(bg, 'change bg asset')
+
+    setTimeout(() => {
+      setIsLoadingTransition(false);
+      console.log("false 3000");
+    }, 3000);
+  }, [light]);
 
   return (
     <div className='relative -z-10'>
       <div
         className={` absolute top-0 left-0 right-0 duration-[1.2s] transition-all ease-in-out  ${
           set.night ? "opacity-100" : "opacity-0"
-        }`}
+        } ${isLoadingTransition ? "opacity-0" : "opacity-100"} `}
       >
         <video
           autoPlay
           muted
           loop
           className='w-screen h-screen object-cover '
+          src={bg}
+          ref={videoRef}
         >
-          <source src={bg2} />
+          {/* <source src={allBg.light} /> */}
         </video>
       </div>
-
+      {/* 
       <div
-      className={` absolute top-0 left-0 right-0 duration-[1.2s] transition-all  ease-in-out  ${
+        className={` absolute top-0 left-0 right-0 duration-[1.2s] transition-all  ease-in-out  ${
           set.night ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -37,10 +53,11 @@ const Background = () => {
           muted
           loop
           className='w-screen h-screen object-cover'
+          src={allBg.night}
+          ref={videoRef}
         >
-          <source src={bg3} />
         </video>
-      </div>
+      </div> */}
     </div>
   );
 };
