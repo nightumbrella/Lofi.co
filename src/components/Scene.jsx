@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SETS } from "../constants/set";
-import { UseBackground, handleBackground } from "../redux/Slice/BgSlice";
+import {
+  UseBackground,
+  handleBackground,
+  stopLoading,
+} from "../redux/Slice/BgSlice";
 import { useDispatch } from "react-redux";
 import video from "../assets/videos/chill-1-day.mp4";
 import video2 from "../assets/videos/chill-1-night.mp4";
@@ -9,19 +13,30 @@ const Scene = () => {
   const [menu, setMenu] = useState(false);
   const [menuHeight, setMenuHeight] = useState(null);
   const [sets, setSets] = useState(SETS);
-  const data = UseBackground();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-  console.log(video, video2, "camera");
-
-  const sendVideoHandler = () => {
+  const sendVideoHandler = (set) => {
+    console.log(set)
+    setLoading(true);
     dispatch(
       handleBackground({
-        night:video,
-        light:video2,
+        loading: true,
+        night: video,
+        light: video2,
       })
     );
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(
+        stopLoading({
+          loading: false,
+        })
+      );
+    }, 100);
+  }, [sendVideoHandler]);
 
   function calcHeight(e) {
     const height = e.offsetHeight;
@@ -73,7 +88,7 @@ const Scene = () => {
           <div
             className='mb-3 cursor-pointer hover:opacity-60 duration-300 border rounded-md'
             key={idx}
-            onClick={menu ? () => {} : () => handleDetails(set.scenes)}
+            onClick={menu ? () => sendVideoHandler(set) : () => handleDetails(set.scenes)}
           >
             <img
               src={set.img}

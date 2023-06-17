@@ -7,46 +7,33 @@ import { UseBackground } from "../redux/Slice/BgSlice";
 const Background = () => {
   const [background, setBackground] = useState("");
   const [isLoadingTransition, setIsLoadingTransition] = useState(false);
-  const { allBg, currBg, set } = UseBackground();
+  const { allBg, currBg, set, loading } = UseBackground();
   const videoRef = useRef();
-  const { night, light } = allBg;
-  console.log(night, light);
-  const [bg, setBg] = useState(light);
-
-  useEffect(() => {
-    setIsLoadingTransition(true);
-    console.log("true 0000");
-    console.log(bg, 'change bg asset')
-
-    setTimeout(() => {
-      setIsLoadingTransition(false);
-      console.log("false 3000");
-    }, 3000);
-  }, [light]);
 
   return (
     <div className='relative -z-10'>
+      {/* 
       <div
-        className={` absolute top-0 left-0 right-0 duration-[1.2s] transition-all ease-in-out  ${
+        className={` absolute top-0 left-0 right-0   duration-[1.2s] transition-all ease-in-out  ${
           set.night ? "opacity-100" : "opacity-0"
-        } ${isLoadingTransition ? "opacity-0" : "opacity-100"} `}
+        } ${loading ? "opacity-0" : "opacity-100"} `}
       >
         <video
           autoPlay
           muted
           loop
           className='w-screen h-screen object-cover '
-          src={bg}
-          ref={videoRef}
+          src={allBg.light}
         >
-          {/* <source src={allBg.light} /> */}
         </video>
-      </div>
-      {/* 
+      </div> */}
+
       <div
-        className={` absolute top-0 left-0 right-0 duration-[1.2s] transition-all  ease-in-out  ${
+        className={` absolute top-0 left-0 right-0  transition-all  ease-in-out ${
           set.night ? "opacity-0" : "opacity-100"
-        }`}
+        }  ${
+          loading ? "opacity-0 duration-75" : "opacity-100 duration-[1.2s]"
+        }  `}
       >
         <video
           autoPlay
@@ -55,9 +42,8 @@ const Background = () => {
           className='w-screen h-screen object-cover'
           src={allBg.night}
           ref={videoRef}
-        >
-        </video>
-      </div> */}
+        ></video>
+      </div>
     </div>
   );
 };

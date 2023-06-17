@@ -20,6 +20,7 @@ const initialState = {
     night: true,
   },
   currBg: bg2,
+  loading: false,
 };
 
 const BackgroundProvider = createSlice({
@@ -42,14 +43,22 @@ const BackgroundProvider = createSlice({
       state.currBg = state.allBg.night;
     },
     handleBackground: (state, action) => {
-      console.log(action.payload);
+      state.loading = action.payload.loading;
       state.allBg.light = action.payload.light;
       state.allBg.night = action.payload.night;
+    },
+    stopLoading: (state, action) => {
+      state.loading = action.payload.loading;
     },
   },
 });
 
 export default BackgroundProvider.reducer;
-export const { changeBackground, onLight, onDark, handleBackground } =
-  BackgroundProvider.actions;
+export const {
+  changeBackground,
+  onLight,
+  onDark,
+  handleBackground,
+  stopLoading,
+} = BackgroundProvider.actions;
 export const UseBackground = () => useSelector((state) => state.background);
