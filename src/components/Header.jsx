@@ -10,16 +10,31 @@ import {
   onLight,
 } from "../redux/Slice/BgSlice";
 
-const el = document.documentElement;
+const element = document.documentElement;
 
 const handleFullScreen = () => {
-  el.requestFullscreen();
-  el.mozRequestFullScreen();
+  if (element.requestFullscreen) {
+    element.requestFullscreen(); // Request full screen
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen(); // Firefox
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen(); // Chrome, Safari, and Opera
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen(); // IE/Edge
+  }
+
 };
 
 const handleCoreScreen = () => {
-  el.exitFullscreen();
-  el.mozCancelFullScreen();
+  if (document.exitFullscreen) {
+    document.exitFullscreen(); // Exit full screen
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen(); // Firefox
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen(); // Chrome, Safari, and Opera
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen(); // IE/Edge
+  }
 };
 
 const Header = () => {
