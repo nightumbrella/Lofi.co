@@ -6,27 +6,35 @@ import {
   stopLoading,
 } from "../redux/Slice/BgSlice";
 import { useDispatch } from "react-redux";
-import video from "../assets/videos/chill-1-day.mp4";
-import video2 from "../assets/videos/chill-1-night.mp4";
+// import video from "../assets/videos/chill-1-day.mp4";
+// import video2 from "../assets/videos/chill-1-night.mp4";
 
 const Scene = () => {
   const [menu, setMenu] = useState(false);
-  const [menuHeight, setMenuHeight] = useState(null);
+  // const [menuHeight, setMenuHeight] = useState(null);
   const [sets, setSets] = useState(SETS);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  // const { allBg } = UseBackground();
+  // const [{ scenes }] = SETS; dest array object array
 
   const sendVideoHandler = (set) => {
-    console.log(set)
+    const { video } = set;
     setLoading(true);
     dispatch(
       handleBackground({
         loading: true,
-        night: video,
-        light: video2,
-      })
+        night: video.night,
+        light: video.light,
+      }),
+      dispatch(
+        stopLoading({
+          loading: false,
+        })
+      )
     );
   };
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,16 +43,16 @@ const Scene = () => {
           loading: false,
         })
       );
+      setLoading(false);
     }, 100);
   }, [sendVideoHandler]);
 
-  function calcHeight(e) {
-    const height = e.offsetHeight;
-    setMenuHeight(height);
-  }
+  // function calcHeight(e) {
+  //   const height = e.offsetHeight;
+  //   setMenuHeight(height);
+  // }
   function handleDetails(set) {
     setSets(set);
-    console.log(set);
     setMenu(true);
   }
   function backMenu() {
@@ -84,20 +92,25 @@ const Scene = () => {
       </div>
 
       <div>
-        {sets.map((set, idx) => (
-          <div
-            className='mb-3 cursor-pointer hover:opacity-60 duration-300 border rounded-md'
-            key={idx}
-            onClick={menu ? () => sendVideoHandler(set) : () => handleDetails(set.scenes)}
-          >
-            <img
-              src={set.img}
-              alt='image'
-            />
-          </div>
-        ))}
+        {sets.map((set, idx) => {
+          return (
+            <div
+              className='mb-3 cursor-pointer hover:opacity-60 duration-300 border rounded-md'
+              key={idx}
+              onClick={
+                menu
+                  ? () => sendVideoHandler(set)
+                  : () => handleDetails(set.scenes)
+              }
+            >
+              <img
+                src={set.img}
+                alt='image'
+              />
+            </div>
+          );
+        })}
       </div>
-      <button onClick={sendVideoHandler}>click</button>
     </div>
   );
 };

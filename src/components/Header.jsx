@@ -26,7 +26,7 @@ const Header = () => {
         </h1>
         <div className="flex gap-10 text-white items-center justify-between ">
           <h1 className="backdrop-blur-sm px-3 h-[30px] flex items-center justify-center  bg-black/[.5] rounded-[5px]">
-            {hours}:{minute <= 10 ? `0${minute}` : minute}{" "}
+            {hours}:{minute < 10 ? `0${minute}` : minute}{" "}
             {hours > 12 ? "PM" : "AM"}
           </h1>
           {/* night or light */}

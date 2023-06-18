@@ -17,7 +17,7 @@ const initialState = {
     light: bg3,
   },
   set: {
-    night: true,
+    night: false,
   },
   currBg: bg2,
   loading: false,
@@ -43,10 +43,18 @@ const BackgroundProvider = createSlice({
       state.currBg = state.allBg.night;
     },
     handleBackground: (state, action) => {
-      state.loading = action.payload.loading;
-      state.allBg.light = action.payload.light;
-      state.allBg.night = action.payload.night;
+      if (
+        state.allBg.light !== action.payload.light ||
+        state.allBg.night !== action.payload.night
+      ) {
+        state.loading = action.payload.loading;
+        state.allBg.light = action.payload.light;
+        state.allBg.night = action.payload.night;
+      } else return;
+
+ 
     },
+
     stopLoading: (state, action) => {
       state.loading = action.payload.loading;
     },
