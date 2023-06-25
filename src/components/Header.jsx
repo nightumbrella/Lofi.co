@@ -209,9 +209,9 @@ const Header = () => {
               </svg>
 
               {minmax && (
-                <div className='absolute  -bottom-16 z-30 backdrop-blur-sm gap-2 flex items-center px-1 h-[50px] w-[100px] left-2/4 -translate-x-2/4 justify-center bg-black/[.8] rounded-[5px]  cursor-pointer'>
+                <div className='absolute   -bottom-16 z-30 backdrop-blur-sm gap-2 flex items-center px-1 h-[50px] w-[100px] left-2/4 -translate-x-2/4 justify-center bg-black/[.8] rounded-[5px]  cursor-pointer'>
                   <div
-                    className='cursor-pointer'
+                    className='cursor-pointer '
                     onClick={() => handleFullScreen()}
                   >
                     <svg
@@ -220,7 +220,8 @@ const Header = () => {
                       viewBox='0 0 24 24'
                       strokeWidth={1.5}
                       stroke='currentColor'
-                      className='w-6 h-6'
+                      className='w-6 h-6 cursor-pointer'
+                      
                     >
                       <path
                         strokeLinecap='round'
