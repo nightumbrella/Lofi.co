@@ -11,35 +11,45 @@ const App = () => {
   const [activeAudio, setActiveAudio] = useState(false);
   const [activeMusic, setActiveMusic] = useState(false);
 
-
+  const [soundValue, setSoundValue] = useState(10);
+  const changeValue = (e) => {
+    const newValue = parseFloat(e.target.value);
+    audioRef.current.volume=newValue
+    console.log(audioRef.current.volume)
+  };
 
   const playAudio = () => {
     if (audioRef.current.paused) {
       audioRef.current.play();
-      setActiveAudio(true)
+      setActiveAudio(true);
     } else {
       audioRef.current.pause();
-      setActiveAudio(false)
+      setActiveAudio(false);
     }
   };
   const playMusic = () => {
     if (musicRef.current.paused) {
       musicRef.current.play();
-      setActiveMusic(true)
+      setActiveMusic(true);
     } else {
       musicRef.current.pause();
-      setActiveMusic(false)
+      setActiveMusic(false);
     }
   };
 
-
   return (
-    <div className='relative h-screen'>
+    <div className="relative h-screen">
       <Background />
       <Header />
-      <Audio audioRef={audioRef}  musicRef={musicRef}/>
-      <Controller playAudio={playAudio} checkActiveAudio={activeAudio} playMusic={playMusic} activeMusic={activeMusic}/>
-      <LeftSidebar/>
+      <Audio audioRef={audioRef} musicRef={musicRef} soundValue={soundValue} />
+      <Controller
+        playAudio={playAudio}
+        checkActiveAudio={activeAudio}
+        playMusic={playMusic}
+        activeMusic={activeMusic}
+        changeValue={changeValue}
+      />
+      <LeftSidebar />
     </div>
   );
 };
