@@ -138,16 +138,20 @@ export const SETS = [
       {
         scene: "scene1",
         img: sceneBook1Img,
+        video: {
+          light: sceneBook1Img,
+          night: sceneBook2Img,
+        },
       },
       {
         scene: "scene2",
         img: sceneBook2Img,
+        video: {
+          light: van1,
+          night: van2,
+        },
       },
     ],
-    video: {
-      light: van1,
-      night: van2,
-    },
   },
   {
     set: "desk",
@@ -290,3 +294,18 @@ export const SETS = [
     ],
   },
 ];
+
+export const NEW_SET = [
+  {
+    id: 1,
+    thumbnails: sceneOcean1Img,
+    content: ocean1,
+    content2: ocean2
+  },
+  {
+    id: 2,
+    thumbnails: sceneForest1Img,
+    content: forest1,
+    content2: forest2,
+  }
+]

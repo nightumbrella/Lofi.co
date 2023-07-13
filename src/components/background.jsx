@@ -7,35 +7,27 @@ import { UseBackground } from "../redux/Slice/BgSlice";
 const Background = () => {
   const [background, setBackground] = useState("");
   const [isLoadingTransition, setIsLoadingTransition] = useState(false);
-  const { allBg, currBg, set, loading } = UseBackground();
-
+  const { allBg, currBg, set, loading,night } = UseBackground();
 
   return (
     <div className='relative -z-10'>
-      <div
-        className={`${
-          loading ? "opacity-0 duration-75" : "opacity-100 duration-500"
-        }`}
+      {/* <div
+        className={`  absolute top-0 left-0 right-0    transition-all ease-in-out  `}
       >
-        <div
-          className={`  absolute top-0 left-0 right-0    transition-all ease-in-out  `}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            className='w-screen h-screen object-cover '
-            src={allBg.night}
-          ></video>
-        </div>
+        <video
+          autoPlay
+          muted
+          loop
+          className='w-screen h-screen object-cover '
+          src={allBg.night}
+        ></video>
       </div>
-      {/* 
       <div
-        className={`  ${
-          loading ? "opacity-0 duration-75" : "opacity-100 duration-[1.2s]"
-        }    absolute top-0 left-0 right-0  transition-all  ease-in-out ${
-          set.night ? "opacity-0 duration-[1.2s]" : "opacity-100 duration-[1.2s]"
-        }  `}
+        className={`${loading ? "opacity-0 duration-75" : "opacity-100 duration-[1.2s]"
+          }    absolute top-0 left-0 right-0  transition-all  ease-in-out ${set.night
+            ? "opacity-0 duration-[1.2s]"
+            : "opacity-100 duration-[1.2s]"
+          }  `}
       >
         <video
           autoPlay
@@ -45,6 +37,9 @@ const Background = () => {
           src={allBg.light}
         ></video>
       </div> */}
+
+      <video className={`absolute left-0 top-0 duration-700 ${night ? "opacity-0" : "opacity-100"}`} src={allBg.light}></video>
+      <video className={`absolute left-0 top-0 duration-700 ${night ? "opacity-100" : "opacity-0"}`} src={allBg.night}></video>
     </div>
   );
 };

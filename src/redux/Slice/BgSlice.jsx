@@ -21,6 +21,7 @@ const initialState = {
   },
   currBg: bg2,
   loading: false,
+  night:false
 };
 
 const BackgroundProvider = createSlice({
@@ -33,6 +34,11 @@ const BackgroundProvider = createSlice({
       } else {
         state.currBg = state.allBg.light;
       }
+    },
+    changeTheme:(state) => {
+      if(state.night){
+        state.night = false
+      } else state.night = true
     },
     onLight: (state, action) => {
       state.set.night = false;
@@ -68,5 +74,6 @@ export const {
   onDark,
   handleBackground,
   stopLoading,
+  changeTheme
 } = BackgroundProvider.actions;
 export const UseBackground = () => useSelector((state) => state.background);

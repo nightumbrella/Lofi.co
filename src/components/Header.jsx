@@ -8,6 +8,7 @@ import {
   changeBackground,
   onDark,
   onLight,
+  changeTheme
 } from "../redux/Slice/BgSlice";
 
 const Header = () => {
@@ -31,11 +32,11 @@ const Header = () => {
           </h1>
           {/* night or light */}
           {set.night ? (
-            <div className="cursor-pointer" onClick={() => dispatch(onLight())}>
+            <div className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
               dark
             </div>
           ) : (
-            <div className="cursor-pointer" onClick={() => dispatch(onDark())}>
+            <div className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
               light
             </div>
           )}
