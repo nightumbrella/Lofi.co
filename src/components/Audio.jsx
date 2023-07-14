@@ -9,7 +9,7 @@ const Audio = ({ audioRef, musicRef }) => {
   return (
     <div className="absolute top-0 left-0">
       <audio
-        src={audio}
+        src={peopletalk}
         ref={audioRef}
       ></audio>
       <audio
