@@ -4,6 +4,6 @@ import AudioSLice from "./Slice/AudioSLice";
 export const store = configureStore({
     reducer:{
         background:BackgroundProvider,
-        AudioSlice:AudioSLice
+        audioSlice:AudioSLice
     }
 })

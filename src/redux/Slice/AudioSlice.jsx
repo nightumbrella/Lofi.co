@@ -38,4 +38,4 @@ const AudioSlice = createSlice({
 export default AudioSlice.reducer;
 export const { PlayMusic, PauseMusic, NextMusic, PrevMusic } =
     AudioSlice.actions;
-export const UseAudio = () => useSelector((state) => state.AudioSlice);
+export const UseAudio = () => useSelector((state) => state.audioSlice);
