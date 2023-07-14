@@ -10,7 +10,7 @@ import {
   onLight,
   changeTheme,
 } from "../redux/Slice/BgSlice";
-import { NextMusic, PauseMusic, PlayMusic, PrevMusic, UseAudio } from "../redux/Slice/AudioSLice";
+import { NextMusic, PauseMusic, PlayMusic, PrevMusic, UseAudio } from "../redux/Slice/AudioSlice";
 
 const element = document.documentElement;
 
