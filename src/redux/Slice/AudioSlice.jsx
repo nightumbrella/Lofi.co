@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const AudioSlice = createSlice({
-    name: "AudioSlice",
+    name: "audioSlice",
     initialState,
     reducers: {
         PlayMusic: (state) => {
