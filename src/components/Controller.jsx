@@ -5,11 +5,10 @@ const Controller = ({
   checkActiveAudio,
   activeMusic,
   playMusic,
-  soundValue,
   changeValue
 }) => {
   return (
-    <div className="fixed ">
+    <div className="fixed">
       <div className="w-screen h-screen relative ">
         <div className="group relative inline-block left-2/4 -translate-x-2/4 ">
           <Wrapper onClick={playAudio}>
@@ -19,8 +18,8 @@ const Controller = ({
             <input
               type="range"
               min={0}
-              max={10}
-              step={1}
+              max={1}
+              step={0.1}
               onChange={changeValue}
               className={`w-[85%] mx-auto accent-[#ff8b2c]  ${checkActiveAudio ? "block" : " hidden"
                 } `}

@@ -11,11 +11,11 @@ const App = () => {
   const [activeAudio, setActiveAudio] = useState(false);
   const [activeMusic, setActiveMusic] = useState(false);
 
-  const [soundValue, setSoundValue] = useState(10);
   const changeValue = (e) => {
     const newValue = parseFloat(e.target.value);
-    audioRef.current.volume=newValue
-    console.log(audioRef.current.volume)
+    if(e.target.value >=0 && e.target.value <=1){
+      audioRef.current.volume=newValue
+    }else return
   };
 
   const playAudio = () => {
@@ -41,7 +41,7 @@ const App = () => {
     <div className="relative h-screen">
       <Background />
       <Header />
-      <Audio audioRef={audioRef} musicRef={musicRef} soundValue={soundValue} />
+      <Audio audioRef={audioRef} musicRef={musicRef}  />
       <Controller
         playAudio={playAudio}
         checkActiveAudio={activeAudio}

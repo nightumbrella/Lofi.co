@@ -48,7 +48,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <div className='flex items-center justify-between h-[100px]'>
+      <div className='flex items-center justify-between h-[100px] relative z-50'>
         <h1>
           <img
             src={logo}
@@ -62,6 +62,10 @@ const Header = () => {
             {hours > 12 ? "PM" : "AM"}
           </h1>
           {/* night or light */}
+          {/* <div>
+            <input type="checkbox" id="switch" />
+            <label for="switch"></label>
+          </div> */}
           {set.night ? (
             <div className="cursor-pointer" onClick={() => dispatch(changeTheme())}>
               dark
@@ -186,7 +190,7 @@ const Header = () => {
 
             <div
               onClick={() => setMinMax(!minmax)}
-              className='backdrop-blur-sm relative flex items-center px-1 h-[30px]  bg-black/[.5] rounded-[5px]  cursor-pointer'
+              className='backdrop-blur-sm relative flex  items-center px-1 h-[30px]  bg-black/[.5] rounded-[5px]  cursor-pointer'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -216,7 +220,7 @@ const Header = () => {
                       strokeWidth={1.5}
                       stroke='currentColor'
                       className='w-6 h-6 cursor-pointer'
-                      
+
                     >
                       <path
                         strokeLinecap='round'

@@ -10,7 +10,7 @@ const Background = () => {
   const { allBg, currBg, set, loading,night } = UseBackground();
 
   return (
-    <div className='relative -z-10'>
+    <div className='relative -z-50'>
       {/* <div
         className={`  absolute top-0 left-0 right-0    transition-all ease-in-out  `}
       >
@@ -38,8 +38,8 @@ const Background = () => {
         ></video>
       </div> */}
 
-      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-0" : "opacity-100"}`} src={allBg.light}></video>
-      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-100" : "opacity-0"}`} src={allBg.night}></video>
+      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-0 z-10" : "opacity-100"}`} src={allBg.light}></video>
+      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-100" : "opacity-0 -z-10"}`} src={allBg.night}></video>
     </div>
   );
 };
