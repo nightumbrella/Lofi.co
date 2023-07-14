@@ -27,14 +27,19 @@ const Controller = ({
           </h1>
         </div>
         {/* second */}
-        <div
-          className="w-[50px] h-[50px] group duration-300 rounded-full border-white border-2 absolute left-[300px] top-[200px] group cursor-pointer active:bg-[#ff7920]"
-          onClick={playMusic}
-        >
+
+
+        <div className="group relative inline-block left-[300px] top-[200px] -translate-x-2/4 ">
+          <Wrapper onClick={playMusic}>
+          </Wrapper>
           <h1 className="translate-y-16 -translate-x-16  items-center  flex-col 0 w-[200px]  group-hover:opacity-100 opacity-0 duration-300  bg-black/[.3] backdrop-blur-sm flex justify-center py-4 text-white rounded-sm ">
-            rain
+            Rain
             <input
               type="range"
+              min={0}
+              max={1}
+              step={0.1}
+              onChange={changeValue}
               className={`w-[85%] mx-auto accent-[#ff8b2c]  ${activeMusic ? "block" : " hidden"
                 } `}
             />
