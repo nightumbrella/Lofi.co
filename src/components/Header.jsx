@@ -3,14 +3,20 @@ import Wrapper from "./Wrapper";
 // import { HiOutlineForward, HiOutlineBackward } from "react-icons/hi";
 import logo from "../assets/logo.0cbf9e63b4a021661126.gif";
 import { useDispatch } from "react-redux";
-import { motion as m } from 'framer-motion'
+import { motion as m } from "framer-motion";
 import {
   UseBackground,
   onDark,
   onLight,
   changeTheme,
 } from "../redux/Slice/BgSlice";
-import { NextMusic, PauseMusic, PlayMusic, PrevMusic, UseAudio } from "../redux/Slice/AudioSlice";
+import {
+  NextMusic,
+  PauseMusic,
+  PlayMusic,
+  PrevMusic,
+  UseAudio,
+} from "../redux/Slice/AudioSlice";
 import Menu from "./Menu/Menu";
 
 const element = document.documentElement;
@@ -42,14 +48,20 @@ const handleCoreScreen = () => {
 const Header = () => {
   const [mute, setMute] = useState(true);
   const [minmax, setMinMax] = useState(false);
-  const [audioVolumeController, setAudioVolumeController] = useState(false)
+  const [audioVolumeController, setAudioVolumeController] = useState(false);
   const hours = new Date().getHours();
   const minute = new Date().getMinutes();
   const dispatch = useDispatch();
   const { set } = UseBackground();
   const { tracks, currentTrackIndex, isPlaying } = UseAudio();
   const audioRef = useRef(null);
-  const [modalMenu, setModalMenu] = useState(false)
+  const [modalMenu, setModalMenu] = useState(false);
+
+  // document.addEventListener('mouseup',() => {
+  //   setMinMax(false)
+  //   setModalMenu(false);
+  // })
+
   useEffect(() => {
     const audioElement = audioRef.current;
     if (isPlaying) {
@@ -62,30 +74,24 @@ const Header = () => {
   useEffect(() => {
     const audioElement = audioRef.current;
     if (isPlaying) {
-      audioElement.play()
+      audioElement.play();
     }
-  }, [currentTrackIndex])
-  const audioPlayer = document.getElementById("music")
-  // const audioDuration = audioPlayer.duration;
-  // const currentTime = audioPlayer.currentTime;
-  console.log(
-    audioPlayer.duration,
-    audioPlayer.currentTime
-  )
-  useEffect(() => {
-  
-  //  if(audioDuration >= currentTime){
+  }, [currentTrackIndex]);
+  const audioDuration = audioRef.current?.duration;
+  const currentTime = audioRef.current?.currentTime;
 
-  //  }
-  }, [])
-  
+  useEffect(() => {
+    if (currentTime >= audioDuration) {
+      dispatch(NextMusic());
+    }
+  }, [currentTime]);
 
   const changeAudioVolume = (e) => {
-    const audioVolume = parseFloat(e.target.value)
+    const audioVolume = parseFloat(e.target.value);
     if (e.target.value >= 0 && e.target.value <= 1) {
-      audioRef.current.volume = audioVolume
-    } else return
-  }
+      audioRef.current.volume = audioVolume;
+    } else return;
+  };
 
   return (
     <Wrapper>
@@ -221,16 +227,24 @@ const Header = () => {
               </svg>
             </div>
             {/* Audio Controller */}
-            {
-              audioVolumeController && <m.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .2 }} className="backdrop-blur-sm px-3 h-[40px]  bg-black/[.5] rounded-[5px] absolute -bottom-11 pt-2 left-0">
-                <input type="range" className="w-[100%] accent-orange-500 " step={.1} min={0} max={1} onChange={changeAudioVolume} />
-              </m.div>
-            }
-            {/* Audio Controller */}
 
+            <div
+              
+              className={` ${audioVolumeController ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} duration-300 backdrop-blur-sm px-3 h-[40px]  bg-black/[.5] rounded-[5px] absolute -bottom-11 pt-2 left-0`}
+            >
+              <input
+                type="range"
+                className="w-[100%] accent-orange-500 "
+                min={0}
+                max={1}
+                step={0.1}
+                onChange={changeAudioVolume}
+              />
+            </div>
+
+            {/* Audio Controller */}
           </div>
           {/* play   */}
-
 
           <div className="flex items-center gap-5 ">
             {/* mute */}
@@ -340,9 +354,11 @@ const Header = () => {
             {/*minimize maximize */}
 
             {/* menu icons */}
-            <div className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer relative"  onClick={() => setModalMenu(!modalMenu)}>
+            <div
+              className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer relative"
+              onClick={() => setModalMenu(!modalMenu)}
+            >
               <svg
-               
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -356,10 +372,7 @@ const Header = () => {
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
-              {
-                modalMenu && <Menu/>
-              }
-
+              {modalMenu && <Menu />}
             </div>
             {/* menu icons */}
           </div>
