@@ -38,8 +38,8 @@ const Background = () => {
         ></video>
       </div> */}
 
-      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-0 z-10" : "opacity-100"}`} src={allBg.light} autoPlay loop></video>
-      <video className={`absolute left-0 top-0 duration-1000 ${night ? "opacity-100" : "opacity-0 -z-10"}`} src={allBg.night} autoPlay loop></video>
+      <video className={`absolute left-0 right-0 bottom-0 top-0 duration-1000 ${night ? "opacity-0 z-10" : "opacity-100"}`} src={allBg.light} autoPlay loop></video>
+      <video className={`absolute left-0 right-0 bottom-0 top-0 duration-1000 ${night ? "opacity-100" : "opacity-0 -z-10"}`} src={allBg.night} autoPlay loop></video>
     </div>
   );
 };

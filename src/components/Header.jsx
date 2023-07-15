@@ -11,6 +11,7 @@ import {
   changeTheme,
 } from "../redux/Slice/BgSlice";
 import { NextMusic, PauseMusic, PlayMusic, PrevMusic, UseAudio } from "../redux/Slice/AudioSlice";
+import Menu from "./Menu/Menu";
 
 const element = document.documentElement;
 
@@ -48,7 +49,7 @@ const Header = () => {
   const { set } = UseBackground();
   const { tracks, currentTrackIndex, isPlaying } = UseAudio();
   const audioRef = useRef(null);
-  // const audioVolumeControllerRef = useRef(null);
+  const [modalMenu, setModalMenu] = useState(false)
   useEffect(() => {
     const audioElement = audioRef.current;
     if (isPlaying) {
@@ -64,13 +65,26 @@ const Header = () => {
       audioElement.play()
     }
   }, [currentTrackIndex])
+  const audioPlayer = document.getElementById("music")
+  // const audioDuration = audioPlayer.duration;
+  // const currentTime = audioPlayer.currentTime;
+  console.log(
+    audioPlayer.duration,
+    audioPlayer.currentTime
+  )
+  useEffect(() => {
+  
+  //  if(audioDuration >= currentTime){
 
+  //  }
+  }, [])
+  
 
- const changeAudioVolume = (e) => {
+  const changeAudioVolume = (e) => {
     const audioVolume = parseFloat(e.target.value)
-    if(e.target.value >=0 && e.target.value <=1){
+    if (e.target.value >= 0 && e.target.value <= 1) {
       audioRef.current.volume = audioVolume
-    }else return
+    } else return
   }
 
   return (
@@ -133,7 +147,7 @@ const Header = () => {
               {/* Prev music */}
               {/* play and pause */}
               <audio
-
+                id="music"
                 src={tracks[currentTrackIndex].source}
                 ref={audioRef}
               ></audio>
@@ -208,7 +222,7 @@ const Header = () => {
             </div>
             {/* Audio Controller */}
             {
-              audioVolumeController && <m.div initial={{opacity:0,y:-10}} animate={{opacity:1,y:0}} transition={{duration:.2}} className="backdrop-blur-sm px-3 h-[40px]  bg-black/[.5] rounded-[5px] absolute -bottom-11 pt-2 left-0">
+              audioVolumeController && <m.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .2 }} className="backdrop-blur-sm px-3 h-[40px]  bg-black/[.5] rounded-[5px] absolute -bottom-11 pt-2 left-0">
                 <input type="range" className="w-[100%] accent-orange-500 " step={.1} min={0} max={1} onChange={changeAudioVolume} />
               </m.div>
             }
@@ -326,8 +340,9 @@ const Header = () => {
             {/*minimize maximize */}
 
             {/* menu icons */}
-            <div className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer">
+            <div className="backdrop-blur-sm px-1 flex items-center h-[30px]  bg-black/[.5] rounded-[5px] cursor-pointer relative"  onClick={() => setModalMenu(!modalMenu)}>
               <svg
+               
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -341,6 +356,10 @@ const Header = () => {
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
+              {
+                modalMenu && <Menu/>
+              }
+
             </div>
             {/* menu icons */}
           </div>
